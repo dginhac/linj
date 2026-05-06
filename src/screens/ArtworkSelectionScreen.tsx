@@ -65,7 +65,7 @@ function ArtworkCard({
             {artwork.name.fr}
           </Text>
           <Text style={styles.cardArtist} numberOfLines={1}>
-            {artwork.artist}
+            {artwork.artist.fr}
           </Text>
         </View>
       </TouchableOpacity>

@@ -3,7 +3,7 @@ export type Language = "fr" | "en" | "es";
 export interface Artwork {
   id: string;
   name: Record<Language, string>;
-  artist: string;
+  artist: Record<Language, string>;
   year: Record<Language, string>;
   imageUrl: string;
   descriptions: Record<Language, string>;
@@ -14,8 +14,12 @@ export interface Artwork {
 export const artworks: Artwork[] = [
   {
     id: "victoire",
-    name: { fr: "Victoire de Samothrace", en: "Winged Victory of Samothrace", es: "Victoria de Samotracia" },
-    artist: "Anonyme",
+    name: {
+      fr: "Victoire de Samothrace",
+      en: "Winged Victory of Samothrace",
+      es: "Victoria de Samotracia",
+    },
+    artist: { fr: "Anonyme", en: "Anonymous", es: "Anónimo" },
     year: { fr: "190 av. J.-C.", en: "190 BC", es: "190 a. C." },
     imageUrl:
       "https://medias.histoire-et-civilisations.com/api/v1/images/view/65f9a6895b635b19da0a18c9/width_1000/image.jpg",
@@ -34,7 +38,7 @@ export const artworks: Artwork[] = [
   {
     id: "penseur",
     name: { fr: "Le Penseur", en: "The Thinker", es: "El Pensador" },
-    artist: "Auguste Rodin",
+    artist: { fr: "Auguste Rodin", en: "Auguste Rodin", es: "Auguste Rodin" },
     year: { fr: "1904", en: "1904", es: "1904" },
     imageUrl:
       "https://www.musee-rodin.fr/sites/default/files/styles/diaporama_mav/public/2021-04/jm_5550.jpg?itok=Qpk0zoXf",
@@ -52,8 +56,12 @@ export const artworks: Artwork[] = [
   },
   {
     id: "balloon-dog",
-    name: { fr: "Balloon Dog (Bleu)", en: "Balloon Dog (Blue)", es: "Balloon Dog (Azul)" },
-    artist: "Jeff Koons",
+    name: {
+      fr: "Balloon Dog (Bleu)",
+      en: "Balloon Dog (Blue)",
+      es: "Balloon Dog (Azul)",
+    },
+    artist: { fr: "Jeff Koons", en: "Jeff Koons", es: "Jeff Koons" },
     year: { fr: "1994–2000", en: "1994–2000", es: "1994–2000" },
     imageUrl:
       "https://i2.wp.com/luxe.net/wp-content/uploads/2015/09/balloon-dog-blue.jpg",
@@ -71,8 +79,12 @@ export const artworks: Artwork[] = [
   },
   {
     id: "ours-blanc",
-    name: { fr: "Ours blanc de Pompon", en: "Polar Bear by Pompon", es: "Oso Polar de Pompon" },
-    artist: "François Pompon",
+    name: {
+      fr: "Ours blanc de Pompon",
+      en: "Polar Bear by Pompon",
+      es: "Oso Polar de Pompon",
+    },
+    artist: { fr: "François Pompon", en: "François Pompon", es: "François Pompon" },
     year: { fr: "1922", en: "1922", es: "1922" },
     imageUrl:
       "https://cdn-s-www.bienpublic.com/images/ED5646F2-A697-4772-B46A-EBDE946E4660/NW_detail/apres-le-parc-darcy-et-le-musee-des-beaux-arts-l-ours-blanc-s-installera-aussi-sur-la-place-centrale-du-centre-commercial-toison-d-or-photo-lbp-stephane-rak-1682530441.jpg",
@@ -90,9 +102,17 @@ export const artworks: Artwork[] = [
   },
   {
     id: "louve",
-    name: { fr: "Louve Capitoline", en: "Capitoline Wolf", es: "Loba Capitolina" },
-    artist: "Anonyme",
-    year: { fr: "Ve siècle av. J.-C.", en: "5th century BC", es: "Siglo V a. C." },
+    name: {
+      fr: "Louve Capitoline",
+      en: "Capitoline Wolf",
+      es: "Loba Capitolina",
+    },
+    artist: { fr: "Anonyme", en: "Anonymous", es: "Anónimo" },
+    year: {
+      fr: "Ve siècle av. J.-C.",
+      en: "5th century BC",
+      es: "Siglo V a. C.",
+    },
     imageUrl:
       "https://www.euratlas.net/euratlas-info_protect/rome/capitole_louve.jpg",
     color: "#8B6914",
@@ -110,10 +130,10 @@ export const artworks: Artwork[] = [
   {
     id: "nana",
     name: { fr: "Nana Jaune", en: "Yellow Nana", es: "Nana Amarilla" },
-    artist: "Niki de Saint Phalle",
+    artist: { fr: "Niki de Saint Phalle", en: "Niki de Saint Phalle", es: "Niki de Saint Phalle" },
     year: { fr: "1999", en: "1999", es: "1999" },
     imageUrl:
-      "https://media.lesechos.com/api/v1/images/view/5c9b06e0d286c2607f5aa773/1280x720-webp/060972446854-web-tete.webp",
+      "https://lelephant-larevue.fr/wp-content/uploads/2020/06/Capture-d%E2%80%99e%CC%81cran-2020-06-17-a%CC%80-12.38.37.png",
     color: "#FFD700",
     descriptions: {
       fr: "Les Nanas sont une série de sculptures monumentales créées par Niki de Saint Phalle à partir de 1965. Ces figures féminines aux formes généreuses et aux couleurs éclatantes célèbrent la joie, la liberté et la féminité. La Nana Jaune, avec ses teintes lumineuses et sa posture dynamique, incarne l'énergie vitale et le mouvement perpétuel de l'art de Niki de Saint Phalle.",

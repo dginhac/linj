@@ -142,7 +142,7 @@ export default function ExperienceScreen({ navigation, route }: Props) {
           <View style={[styles.colorAccent, { backgroundColor: artwork.color }]} />
           <Text style={styles.artworkTitle}>{artwork.name[language]}</Text>
           <Text style={styles.artworkMeta}>
-            {artwork.artist} · {artwork.year[language]}
+            {artwork.artist[language]} · {artwork.year[language]}
           </Text>
 
           {/* Audio Player */}
