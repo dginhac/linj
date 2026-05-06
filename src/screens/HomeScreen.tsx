@@ -11,6 +11,8 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Platform,
+  ScrollView,
+  ActivityIndicator,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -24,10 +26,13 @@ type Props = {
 const { width, height } = Dimensions.get("window");
 
 export default function HomeScreen({ navigation }: Props) {
-  const { host, port, setHost, setPort } = useSettings();
+  const { host, port, endpoint, setHost, setPort, setEndpoint } = useSettings();
   const [settingsVisible, setSettingsVisible] = useState(false);
   const [draftHost, setDraftHost] = useState(host);
   const [draftPort, setDraftPort] = useState(port);
+  const [draftEndpoint, setDraftEndpoint] = useState(endpoint);
+  const [testStatus, setTestStatus] = useState<'idle' | 'testing' | 'ok' | 'error'>('idle');
+  const [testMessage, setTestMessage] = useState('');
 
   const glowAnim = useRef(new Animated.Value(0)).current;
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -132,6 +137,9 @@ export default function HomeScreen({ navigation }: Props) {
         onPress={() => {
           setDraftHost(host);
           setDraftPort(port);
+          setDraftEndpoint(endpoint);
+          setTestStatus('idle');
+          setTestMessage('');
           setSettingsVisible(true);
         }}
         activeOpacity={0.7}
@@ -155,35 +163,96 @@ export default function HomeScreen({ navigation }: Props) {
         >
           <View style={styles.modalCard}>
             <Text style={styles.modalTitle}>Paramètres API</Text>
-            <Text style={styles.modalLabel}>
-              Adresse IP du serveur hologramme
-            </Text>
-            <TextInput
-              style={styles.modalInput}
-              value={draftHost}
-              onChangeText={setDraftHost}
-              placeholder="192.168.1.1"
-              placeholderTextColor="rgba(255,255,255,0.25)"
-              keyboardType="url"
-              autoCapitalize="none"
-              autoCorrect={false}
-              selectTextOnFocus
-            />
-            <Text style={[styles.modalLabel, { marginTop: 16 }]}>Port</Text>
-            <TextInput
-              style={styles.modalInput}
-              value={draftPort}
-              onChangeText={setDraftPort}
-              placeholder="8000"
-              placeholderTextColor="rgba(255,255,255,0.25)"
-              keyboardType="number-pad"
-              autoCapitalize="none"
-              autoCorrect={false}
-              selectTextOnFocus
-            />
-            <Text style={styles.modalHint}>
-              URL : http://{draftHost.trim() || "…"}:{draftPort.trim() || "…"}
-            </Text>
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <Text style={styles.modalLabel}>Adresse IP</Text>
+              <TextInput
+                style={styles.modalInput}
+                value={draftHost}
+                onChangeText={(v) => { setDraftHost(v); setTestStatus('idle'); }}
+                placeholder="192.168.1.1"
+                placeholderTextColor="rgba(255,255,255,0.25)"
+                keyboardType="url"
+                autoCapitalize="none"
+                autoCorrect={false}
+                selectTextOnFocus
+              />
+              <Text style={[styles.modalLabel, { marginTop: 16 }]}>Port</Text>
+              <TextInput
+                style={styles.modalInput}
+                value={draftPort}
+                onChangeText={(v) => { setDraftPort(v); setTestStatus('idle'); }}
+                placeholder="8000"
+                placeholderTextColor="rgba(255,255,255,0.25)"
+                keyboardType="number-pad"
+                autoCapitalize="none"
+                autoCorrect={false}
+                selectTextOnFocus
+              />
+              <Text style={[styles.modalLabel, { marginTop: 16 }]}>Endpoint</Text>
+              <TextInput
+                style={styles.modalInput}
+                value={draftEndpoint}
+                onChangeText={(v) => { setDraftEndpoint(v); setTestStatus('idle'); }}
+                placeholder="set_project"
+                placeholderTextColor="rgba(255,255,255,0.25)"
+                keyboardType="default"
+                autoCapitalize="none"
+                autoCorrect={false}
+                selectTextOnFocus
+              />
+              <Text style={styles.modalHint}>
+                URL : http://{draftHost.trim() || "…"}:{draftPort.trim() || "…"}/{draftEndpoint.trim() || "…"}
+              </Text>
+
+              {/* Test button */}
+              <TouchableOpacity
+                style={styles.testButton}
+                activeOpacity={0.8}
+                disabled={testStatus === 'testing'}
+                onPress={async () => {
+                  setTestStatus('testing');
+                  setTestMessage('');
+                  const controller = new AbortController();
+                  const timer = setTimeout(() => controller.abort(), 5000);
+                  try {
+                    const res = await fetch(
+                      `http://${draftHost.trim()}:${draftPort.trim()}`,
+                      { signal: controller.signal }
+                    );
+                    clearTimeout(timer);
+                    const text = await res.text();
+                    setTestStatus('ok');
+                    setTestMessage(text || `HTTP ${res.status}`);
+                  } catch (e: any) {
+                    clearTimeout(timer);
+                    setTestStatus('error');
+                    setTestMessage(
+                      e?.name === 'AbortError'
+                        ? 'Timeout — serveur injoignable'
+                        : (e?.message ?? 'Erreur réseau')
+                    );
+                  }
+                }}
+              >
+                {testStatus === 'testing' ? (
+                  <ActivityIndicator color="#FFFFFF" size="small" />
+                ) : (
+                  <Text style={styles.testButtonText}>⚡ Tester la connexion</Text>
+                )}
+              </TouchableOpacity>
+
+              {testStatus === 'ok' && (
+                <View style={styles.testResult}>
+                  <Text style={styles.testResultOk}>✓ {testMessage}</Text>
+                </View>
+              )}
+              {testStatus === 'error' && (
+                <View style={styles.testResult}>
+                  <Text style={styles.testResultError}>✕ {testMessage}</Text>
+                </View>
+              )}
+            </ScrollView>
+
             <View style={styles.modalActions}>
               <TouchableOpacity
                 style={styles.modalCancel}
@@ -193,7 +262,7 @@ export default function HomeScreen({ navigation }: Props) {
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={async () => {
-                  await Promise.all([setHost(draftHost), setPort(draftPort)]);
+                  await Promise.all([setHost(draftHost), setPort(draftPort), setEndpoint(draftEndpoint)]);
                   setSettingsVisible(false);
                 }}
                 activeOpacity={0.85}
@@ -394,9 +463,43 @@ const styles = StyleSheet.create({
     marginBottom: 28,
     letterSpacing: 0.3,
   },
+  testButton: {
+    marginTop: 4,
+    marginBottom: 8,
+    paddingVertical: 14,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "rgba(108,59,255,0.5)",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(108,59,255,0.12)",
+  },
+  testButtonText: {
+    color: "#A78BFA",
+    fontSize: 14,
+    fontWeight: "600",
+    letterSpacing: 0.3,
+  },
+  testResult: {
+    borderRadius: 10,
+    padding: 12,
+    marginBottom: 8,
+    backgroundColor: "rgba(255,255,255,0.05)",
+  },
+  testResultOk: {
+    color: "#4ADE80",
+    fontSize: 13,
+    lineHeight: 20,
+  },
+  testResultError: {
+    color: "#F87171",
+    fontSize: 13,
+    lineHeight: 20,
+  },
   modalActions: {
     flexDirection: "row",
     gap: 12,
+    marginTop: 16,
   },
   modalCancel: {
     flex: 1,

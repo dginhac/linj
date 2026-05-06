@@ -42,7 +42,7 @@ const speechLocales: Record<string, string> = {
 
 export default function ExperienceScreen({ navigation, route }: Props) {
   const { artwork, language } = route.params;
-  const { host, port } = useSettings();
+  const { host, port, endpoint } = useSettings();
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioProgress, setAudioProgress] = useState(0);
   const [hologramStatus, setHologramStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
@@ -85,7 +85,7 @@ export default function ExperienceScreen({ navigation, route }: Props) {
     if (hologramStatus === 'sending') return;
     setHologramStatus('sending');
     try {
-      const url = getHologramUrl(host, port, artwork.id, language);
+      const url = getHologramUrl(host, port, endpoint, artwork.id, language);
       const response = await fetch(url, { method: 'POST' });
       setHologramStatus(response.ok ? 'success' : 'error');
     } catch {
