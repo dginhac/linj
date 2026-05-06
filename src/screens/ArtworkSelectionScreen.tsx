@@ -62,7 +62,7 @@ function ArtworkCard({
         <View style={[styles.cardColorDot, { backgroundColor: artwork.color }]} />
         <View style={styles.cardInfo}>
           <Text style={styles.cardName} numberOfLines={2}>
-            {artwork.name}
+            {artwork.name.fr}
           </Text>
           <Text style={styles.cardArtist} numberOfLines={1}>
             {artwork.artist}

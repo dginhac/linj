@@ -140,7 +140,7 @@ export default function ExperienceScreen({ navigation, route }: Props) {
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
           {/* Title */}
           <View style={[styles.colorAccent, { backgroundColor: artwork.color }]} />
-          <Text style={styles.artworkTitle}>{artwork.name}</Text>
+          <Text style={styles.artworkTitle}>{artwork.name[language]}</Text>
           <Text style={styles.artworkMeta}>
             {artwork.artist} · {artwork.year}
           </Text>

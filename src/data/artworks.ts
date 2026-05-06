@@ -2,7 +2,7 @@ export type Language = "fr" | "en" | "es";
 
 export interface Artwork {
   id: string;
-  name: string;
+  name: Record<Language, string>;
   artist: string;
   year: string;
   imageUrl: string;
@@ -14,7 +14,7 @@ export interface Artwork {
 export const artworks: Artwork[] = [
   {
     id: "victoire",
-    name: "Victoire de Samothrace",
+    name: { fr: "Victoire de Samothrace", en: "Winged Victory of Samothrace", es: "Victoria de Samotracia" },
     artist: "Anonyme",
     year: "190 av. J.-C.",
     imageUrl:
@@ -33,7 +33,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "penseur",
-    name: "Le Penseur",
+    name: { fr: "Le Penseur", en: "The Thinker", es: "El Pensador" },
     artist: "Auguste Rodin",
     year: "1904",
     imageUrl:
@@ -52,7 +52,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "balloon-dog",
-    name: "Balloon Dog (Blue)",
+    name: { fr: "Balloon Dog (Bleu)", en: "Balloon Dog (Blue)", es: "Balloon Dog (Azul)" },
     artist: "Jeff Koons",
     year: "1994–2000",
     imageUrl:
@@ -71,7 +71,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "ours-blanc",
-    name: "Ours blanc de Pompon",
+    name: { fr: "Ours blanc de Pompon", en: "Polar Bear by Pompon", es: "Oso Polar de Pompon" },
     artist: "François Pompon",
     year: "1922",
     imageUrl:
@@ -90,7 +90,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "louve",
-    name: "Louve Capitoline",
+    name: { fr: "Louve Capitoline", en: "Capitoline Wolf", es: "Loba Capitolina" },
     artist: "Anonyme",
     year: "Ve siècle av. J.-C.",
     imageUrl:
@@ -109,7 +109,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: "nana",
-    name: "Manneken Pis",
+    name: { fr: "Nana Jaune", en: "Yellow Nana", es: "Nana Amarilla" },
     artist: "Niki de Saint Phalle",
     year: "1999",
     imageUrl:

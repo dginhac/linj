@@ -66,7 +66,7 @@ export default function LanguageSelectionScreen({ navigation, route }: Props) {
           <View style={[styles.artworkColorBar, { backgroundColor: artwork.color }]} />
         </View>
 
-        <Text style={styles.artworkName}>{artwork.name}</Text>
+        <Text style={styles.artworkName}>{artwork.name.fr}</Text>
         <Text style={styles.artworkArtist}>
           {artwork.artist} · {artwork.year}
         </Text>
