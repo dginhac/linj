@@ -4,7 +4,7 @@ export interface Artwork {
   id: string;
   name: Record<Language, string>;
   artist: string;
-  year: string;
+  year: Record<Language, string>;
   imageUrl: string;
   descriptions: Record<Language, string>;
   audioText: Record<Language, string>;
@@ -16,7 +16,7 @@ export const artworks: Artwork[] = [
     id: "victoire",
     name: { fr: "Victoire de Samothrace", en: "Winged Victory of Samothrace", es: "Victoria de Samotracia" },
     artist: "Anonyme",
-    year: "190 av. J.-C.",
+    year: { fr: "190 av. J.-C.", en: "190 BC", es: "190 a. C." },
     imageUrl:
       "https://medias.histoire-et-civilisations.com/api/v1/images/view/65f9a6895b635b19da0a18c9/width_1000/image.jpg",
     color: "#4A90D9",
@@ -35,7 +35,7 @@ export const artworks: Artwork[] = [
     id: "penseur",
     name: { fr: "Le Penseur", en: "The Thinker", es: "El Pensador" },
     artist: "Auguste Rodin",
-    year: "1904",
+    year: { fr: "1904", en: "1904", es: "1904" },
     imageUrl:
       "https://www.musee-rodin.fr/sites/default/files/styles/diaporama_mav/public/2021-04/jm_5550.jpg?itok=Qpk0zoXf",
     color: "#8B4513",
@@ -54,7 +54,7 @@ export const artworks: Artwork[] = [
     id: "balloon-dog",
     name: { fr: "Balloon Dog (Bleu)", en: "Balloon Dog (Blue)", es: "Balloon Dog (Azul)" },
     artist: "Jeff Koons",
-    year: "1994–2000",
+    year: { fr: "1994–2000", en: "1994–2000", es: "1994–2000" },
     imageUrl:
       "https://i2.wp.com/luxe.net/wp-content/uploads/2015/09/balloon-dog-blue.jpg",
     color: "#0066CC",
@@ -73,7 +73,7 @@ export const artworks: Artwork[] = [
     id: "ours-blanc",
     name: { fr: "Ours blanc de Pompon", en: "Polar Bear by Pompon", es: "Oso Polar de Pompon" },
     artist: "François Pompon",
-    year: "1922",
+    year: { fr: "1922", en: "1922", es: "1922" },
     imageUrl:
       "https://cdn-s-www.bienpublic.com/images/ED5646F2-A697-4772-B46A-EBDE946E4660/NW_detail/apres-le-parc-darcy-et-le-musee-des-beaux-arts-l-ours-blanc-s-installera-aussi-sur-la-place-centrale-du-centre-commercial-toison-d-or-photo-lbp-stephane-rak-1682530441.jpg",
     color: "#E8E8E8",
@@ -92,7 +92,7 @@ export const artworks: Artwork[] = [
     id: "louve",
     name: { fr: "Louve Capitoline", en: "Capitoline Wolf", es: "Loba Capitolina" },
     artist: "Anonyme",
-    year: "Ve siècle av. J.-C.",
+    year: { fr: "Ve siècle av. J.-C.", en: "5th century BC", es: "Siglo V a. C." },
     imageUrl:
       "https://www.euratlas.net/euratlas-info_protect/rome/capitole_louve.jpg",
     color: "#8B6914",
@@ -111,7 +111,7 @@ export const artworks: Artwork[] = [
     id: "nana",
     name: { fr: "Nana Jaune", en: "Yellow Nana", es: "Nana Amarilla" },
     artist: "Niki de Saint Phalle",
-    year: "1999",
+    year: { fr: "1999", en: "1999", es: "1999" },
     imageUrl:
       "https://media.lesechos.com/api/v1/images/view/5c9b06e0d286c2607f5aa773/1280x720-webp/060972446854-web-tete.webp",
     color: "#FFD700",

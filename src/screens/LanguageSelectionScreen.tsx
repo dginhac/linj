@@ -68,7 +68,7 @@ export default function LanguageSelectionScreen({ navigation, route }: Props) {
 
         <Text style={styles.artworkName}>{artwork.name.fr}</Text>
         <Text style={styles.artworkArtist}>
-          {artwork.artist} · {artwork.year}
+          {artwork.artist} · {artwork.year.fr}
         </Text>
 
         {/* Divider */}
