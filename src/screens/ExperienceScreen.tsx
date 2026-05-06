@@ -17,6 +17,7 @@ import { RouteProp } from '@react-navigation/native';
 import * as Speech from 'expo-speech';
 import { RootStackParamList } from '../navigation/AppNavigator';
 import { Language } from '../data/artworks';
+import { getHologramUrl } from '../config/api';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Experience'>;
@@ -27,10 +28,10 @@ const { width, height } = Dimensions.get('window');
 
 const langLabels: Record<string, string> = { fr: 'FR', en: 'EN', es: 'ES' };
 
-const playerLabels: Record<Language, { title: string; titlePlaying: string; sub: string; subPlaying: string; about: string; explore: string }> = {
-  fr: { title: 'Description audio', titlePlaying: 'En cours de lecture...', sub: 'Appuyez pour écouter', subPlaying: 'Appuyez pour arrêter', about: 'À propos', explore: 'Explorer d\'autres œuvres →' },
-  en: { title: 'Audio description', titlePlaying: 'Now playing...', sub: 'Tap to listen', subPlaying: 'Tap to stop', about: 'About', explore: 'Explore more artworks →' },
-  es: { title: 'Descripción de audio', titlePlaying: 'Reproduciendo...', sub: 'Toque para escuchar', subPlaying: 'Toque para detener', about: 'Acerca de', explore: 'Explorar más obras →' },
+const playerLabels: Record<Language, { title: string; titlePlaying: string; sub: string; subPlaying: string; about: string; explore: string; hologram: string; hologramSending: string; hologramSuccess: string; hologramError: string }> = {
+  fr: { title: 'Description audio', titlePlaying: 'En cours de lecture...', sub: 'Appuyez pour écouter', subPlaying: 'Appuyez pour arrêter', about: 'À propos', explore: 'Explorer d\'autres œuvres →', hologram: '✦ Lancer l\'hologramme', hologramSending: 'Envoi en cours…', hologramSuccess: '✓ Hologramme lancé', hologramError: '✕ Erreur de connexion' },
+  en: { title: 'Audio description', titlePlaying: 'Now playing...', sub: 'Tap to listen', subPlaying: 'Tap to stop', about: 'About', explore: 'Explore more artworks →', hologram: '✦ Launch hologram', hologramSending: 'Sending…', hologramSuccess: '✓ Hologram launched', hologramError: '✕ Connection error' },
+  es: { title: 'Descripción de audio', titlePlaying: 'Reproduciendo...', sub: 'Toque para escuchar', subPlaying: 'Toque para detener', about: 'Acerca de', explore: 'Explorar más obras →', hologram: '✦ Lanzar holograma', hologramSending: 'Enviando…', hologramSuccess: '✓ Holograma lanzado', hologramError: '✕ Error de conexión' },
 };
 const speechLocales: Record<string, string> = {
   fr: 'fr-FR',
@@ -42,6 +43,7 @@ export default function ExperienceScreen({ navigation, route }: Props) {
   const { artwork, language } = route.params;
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioProgress, setAudioProgress] = useState(0);
+  const [hologramStatus, setHologramStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const pulseAnim = useRef(new Animated.Value(1)).current;
@@ -75,6 +77,20 @@ export default function ExperienceScreen({ navigation, route }: Props) {
     waveAnim.stopAnimation();
     Animated.timing(pulseAnim, { toValue: 1, duration: 200, useNativeDriver: true }).start();
     Animated.timing(waveAnim, { toValue: 0, duration: 200, useNativeDriver: true }).start();
+  };
+
+  const handleHologram = async () => {
+    if (hologramStatus === 'sending') return;
+    setHologramStatus('sending');
+    try {
+      const url = getHologramUrl(artwork.id, language);
+      const response = await fetch(url, { method: 'POST' });
+      setHologramStatus(response.ok ? 'success' : 'error');
+    } catch {
+      setHologramStatus('error');
+    } finally {
+      setTimeout(() => setHologramStatus('idle'), 3000);
+    }
   };
 
   const handlePlayAudio = async () => {
@@ -205,6 +221,41 @@ export default function ExperienceScreen({ navigation, route }: Props) {
             </View>
             <Text style={styles.descriptionText}>{artwork.descriptions[language]}</Text>
           </View>
+
+          {/* Hologram button */}
+          <TouchableOpacity
+            style={[
+              styles.hologramButton,
+              hologramStatus === 'success' && styles.hologramButtonSuccess,
+              hologramStatus === 'error' && styles.hologramButtonError,
+            ]}
+            onPress={handleHologram}
+            activeOpacity={0.85}
+            disabled={hologramStatus === 'sending'}
+          >
+            <LinearGradient
+              colors={
+                hologramStatus === 'success'
+                  ? ['#00C853', '#00897B']
+                  : hologramStatus === 'error'
+                  ? ['#D32F2F', '#B71C1C']
+                  : ['#6C3BFF', '#3B8BFF']
+              }
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={styles.hologramGradient}
+            >
+              <Text style={styles.hologramText}>
+                {hologramStatus === 'sending'
+                  ? playerLabels[language].hologramSending
+                  : hologramStatus === 'success'
+                  ? playerLabels[language].hologramSuccess
+                  : hologramStatus === 'error'
+                  ? playerLabels[language].hologramError
+                  : playerLabels[language].hologram}
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
 
           {/* Share / explore more */}
           <TouchableOpacity
@@ -388,6 +439,33 @@ const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 24,
     letterSpacing: 0.1,
+  },
+  hologramButton: {
+    borderRadius: 16,
+    overflow: 'hidden',
+    marginBottom: 16,
+    shadowColor: '#6C3BFF',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.5,
+    shadowRadius: 16,
+    elevation: 10,
+  },
+  hologramButtonSuccess: {
+    shadowColor: '#00C853',
+  },
+  hologramButtonError: {
+    shadowColor: '#D32F2F',
+  },
+  hologramGradient: {
+    paddingVertical: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  hologramText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '700',
+    letterSpacing: 0.5,
   },
   exploreMore: {
     alignItems: 'center',
