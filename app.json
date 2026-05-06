@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "louise",
-    "slug": "louise",
+    "name": "LINJ",
+    "slug": "linj",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -10,11 +10,11 @@
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#0A0A0F"
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.louise"
+      "bundleIdentifier": "com.ginhac.linj"
     },
     "android": {
       "adaptiveIcon": {
@@ -23,7 +23,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.louise"
+      "package": "com.ginhac.linj"
     },
     "web": {
       "favicon": "./assets/favicon.png"

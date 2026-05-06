@@ -1,5 +1,5 @@
 {
-  "name": "louise",
+  "name": "linj",
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
@@ -16,6 +16,7 @@
     "expo-dev-client": "~6.0.21",
     "expo-linear-gradient": "~15.0.8",
     "expo-speech": "~14.0.8",
+    "expo-splash-screen": "~31.0.13",
     "expo-status-bar": "~3.0.9",
     "react": "19.1.0",
     "react-native": "0.81.5",
