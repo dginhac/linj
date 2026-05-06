@@ -16,6 +16,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
 import * as Speech from 'expo-speech';
 import { RootStackParamList } from '../navigation/AppNavigator';
+import { Language } from '../data/artworks';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Experience'>;
@@ -25,6 +26,12 @@ type Props = {
 const { width, height } = Dimensions.get('window');
 
 const langLabels: Record<string, string> = { fr: 'FR', en: 'EN', es: 'ES' };
+
+const playerLabels: Record<Language, { title: string; titlePlaying: string; sub: string; subPlaying: string }> = {
+  fr: { title: 'Description audio', titlePlaying: 'En cours de lecture...', sub: 'Appuyez pour écouter', subPlaying: 'Appuyez pour arrêter' },
+  en: { title: 'Audio description', titlePlaying: 'Now playing...', sub: 'Tap to listen', subPlaying: 'Tap to stop' },
+  es: { title: 'Descripción de audio', titlePlaying: 'Reproduciendo...', sub: 'Toque para escuchar', subPlaying: 'Toque para detener' },
+};
 const speechLocales: Record<string, string> = {
   fr: 'fr-FR',
   en: 'en-GB',
@@ -182,10 +189,10 @@ export default function ExperienceScreen({ navigation, route }: Props) {
 
             <View style={styles.playerInfo}>
               <Text style={styles.playerTitle}>
-                {isPlaying ? 'En cours de lecture...' : 'Description audio'}
+                {isPlaying ? playerLabels[language].titlePlaying : playerLabels[language].title}
               </Text>
               <Text style={styles.playerSub}>
-                {isPlaying ? 'Appuyez pour arrêter' : 'Appuyez pour écouter'}
+                {isPlaying ? playerLabels[language].subPlaying : playerLabels[language].sub}
               </Text>
             </View>
           </View>
