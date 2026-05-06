@@ -1,4 +1,4 @@
-export const API_HOST = '192.168.1.1';
+export const DEFAULT_HOST = '192.168.1.1';
 
-export const getHologramUrl = (project: string, language: string) =>
-  `http://${API_HOST}:8000/set_project?project=${project}&language=${language}`;
+export const getHologramUrl = (host: string, project: string, language: string) =>
+  `http://${host}:8000/set_project?project=${project}&language=${language}`;

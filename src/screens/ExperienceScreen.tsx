@@ -18,6 +18,7 @@ import * as Speech from 'expo-speech';
 import { RootStackParamList } from '../navigation/AppNavigator';
 import { Language } from '../data/artworks';
 import { getHologramUrl } from '../config/api';
+import { useSettings } from '../context/SettingsContext';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Experience'>;
@@ -41,6 +42,7 @@ const speechLocales: Record<string, string> = {
 
 export default function ExperienceScreen({ navigation, route }: Props) {
   const { artwork, language } = route.params;
+  const { host } = useSettings();
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioProgress, setAudioProgress] = useState(0);
   const [hologramStatus, setHologramStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
@@ -83,7 +85,7 @@ export default function ExperienceScreen({ navigation, route }: Props) {
     if (hologramStatus === 'sending') return;
     setHologramStatus('sending');
     try {
-      const url = getHologramUrl(artwork.id, language);
+      const url = getHologramUrl(host, artwork.id, language);
       const response = await fetch(url, { method: 'POST' });
       setHologramStatus(response.ok ? 'success' : 'error');
     } catch {
