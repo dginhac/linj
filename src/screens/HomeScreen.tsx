@@ -24,9 +24,10 @@ type Props = {
 const { width, height } = Dimensions.get('window');
 
 export default function HomeScreen({ navigation }: Props) {
-  const { host, setHost } = useSettings();
+  const { host, port, setHost, setPort } = useSettings();
   const [settingsVisible, setSettingsVisible] = useState(false);
   const [draftHost, setDraftHost] = useState(host);
+  const [draftPort, setDraftPort] = useState(port);
 
   const glowAnim = useRef(new Animated.Value(0)).current;
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -105,6 +106,7 @@ export default function HomeScreen({ navigation }: Props) {
         style={styles.settingsButton}
         onPress={() => {
           setDraftHost(host);
+          setDraftPort(port);
           setSettingsVisible(true);
         }}
         activeOpacity={0.7}
@@ -140,8 +142,20 @@ export default function HomeScreen({ navigation }: Props) {
               autoCorrect={false}
               selectTextOnFocus
             />
+            <Text style={[styles.modalLabel, { marginTop: 16 }]}>Port</Text>
+            <TextInput
+              style={styles.modalInput}
+              value={draftPort}
+              onChangeText={setDraftPort}
+              placeholder="8000"
+              placeholderTextColor="rgba(255,255,255,0.25)"
+              keyboardType="number-pad"
+              autoCapitalize="none"
+              autoCorrect={false}
+              selectTextOnFocus
+            />
             <Text style={styles.modalHint}>
-              URL : http://{draftHost.trim() || '…'}:8000
+              URL : http://{draftHost.trim() || '…'}:{draftPort.trim() || '…'}
             </Text>
             <View style={styles.modalActions}>
               <TouchableOpacity
@@ -152,7 +166,7 @@ export default function HomeScreen({ navigation }: Props) {
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={async () => {
-                  await setHost(draftHost);
+                  await Promise.all([setHost(draftHost), setPort(draftPort)]);
                   setSettingsVisible(false);
                 }}
                 activeOpacity={0.85}
