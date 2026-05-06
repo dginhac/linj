@@ -27,10 +27,10 @@ const { width, height } = Dimensions.get('window');
 
 const langLabels: Record<string, string> = { fr: 'FR', en: 'EN', es: 'ES' };
 
-const playerLabels: Record<Language, { title: string; titlePlaying: string; sub: string; subPlaying: string }> = {
-  fr: { title: 'Description audio', titlePlaying: 'En cours de lecture...', sub: 'Appuyez pour écouter', subPlaying: 'Appuyez pour arrêter' },
-  en: { title: 'Audio description', titlePlaying: 'Now playing...', sub: 'Tap to listen', subPlaying: 'Tap to stop' },
-  es: { title: 'Descripción de audio', titlePlaying: 'Reproduciendo...', sub: 'Toque para escuchar', subPlaying: 'Toque para detener' },
+const playerLabels: Record<Language, { title: string; titlePlaying: string; sub: string; subPlaying: string; about: string; explore: string }> = {
+  fr: { title: 'Description audio', titlePlaying: 'En cours de lecture...', sub: 'Appuyez pour écouter', subPlaying: 'Appuyez pour arrêter', about: 'À propos', explore: 'Explorer d\'autres œuvres →' },
+  en: { title: 'Audio description', titlePlaying: 'Now playing...', sub: 'Tap to listen', subPlaying: 'Tap to stop', about: 'About', explore: 'Explore more artworks →' },
+  es: { title: 'Descripción de audio', titlePlaying: 'Reproduciendo...', sub: 'Toque para escuchar', subPlaying: 'Toque para detener', about: 'Acerca de', explore: 'Explorar más obras →' },
 };
 const speechLocales: Record<string, string> = {
   fr: 'fr-FR',
@@ -200,7 +200,7 @@ export default function ExperienceScreen({ navigation, route }: Props) {
           {/* Description */}
           <View style={styles.descriptionCard}>
             <View style={styles.descriptionHeader}>
-              <Text style={styles.descriptionLabel}>À propos</Text>
+              <Text style={styles.descriptionLabel}>{playerLabels[language].about}</Text>
               <View style={styles.descriptionLine} />
             </View>
             <Text style={styles.descriptionText}>{artwork.descriptions[language]}</Text>
@@ -214,7 +214,7 @@ export default function ExperienceScreen({ navigation, route }: Props) {
               navigation.navigate('ArtworkSelection');
             }}
           >
-            <Text style={styles.exploreMoreText}>Explorer d'autres œuvres →</Text>
+            <Text style={styles.exploreMoreText}>{playerLabels[language].explore}</Text>
           </TouchableOpacity>
         </ScrollView>
       </Animated.View>
