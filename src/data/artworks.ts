@@ -13,6 +13,60 @@ export interface Artwork {
 
 export const artworks: Artwork[] = [
   {
+    id: "ours-blanc",
+    name: {
+      fr: "Ours blanc de Pompon",
+      en: "Polar Bear by Pompon",
+      es: "Oso Polar de Pompon",
+    },
+    artist: {
+      fr: "François Pompon",
+      en: "François Pompon",
+      es: "François Pompon",
+    },
+    year: { fr: "1922", en: "1922", es: "1922" },
+    imageUrl:
+      "https://cdn-s-www.bienpublic.com/images/ED5646F2-A697-4772-B46A-EBDE946E4660/NW_detail/apres-le-parc-darcy-et-le-musee-des-beaux-arts-l-ours-blanc-s-installera-aussi-sur-la-place-centrale-du-centre-commercial-toison-d-or-photo-lbp-stephane-rak-1682530441.jpg",
+    color: "#E8E8E8",
+    descriptions: {
+      fr: "L'Ours blanc est l'œuvre maîtresse de François Pompon, sculpteur animalier français. Présenté au Salon d'Automne de 1922, cette sculpture stylisée révolutionne la représentation animale en éliminant tout détail superflu pour ne garder que l'essentiel. Ses formes épurées et sa surface lisse font de lui un précurseur de l'art moderne et du design contemporain.",
+      en: "The Polar Bear is the masterpiece of François Pompon, a French animal sculptor. Presented at the Autumn Salon of 1922, this stylized sculpture revolutionized animal representation by eliminating all superfluous detail to keep only the essential. Its pure forms and smooth surface make it a precursor of modern art and contemporary design.",
+      es: "El Oso Polar es la obra maestra de François Pompon, escultor animalista francés. Presentada en el Salón de Otoño de 1922, esta escultura estilizada revolucionó la representación animal eliminando todo detalle superfluo.",
+    },
+    audioText: {
+      fr: "Voici l'Ours blanc de François Pompon, présenté pour la première fois au Salon d'automne de 1922 à Paris. Cette sculpture en marbre blanc mesure plus d'un mètre de hauteur et représente un ours polaire dans une posture dynamique, prêt à avancer. Pompon a consacré plus de dix ans à perfectionner cette œuvre. Sa surface lisse et ses formes épurées anticipent l'art animalier moderne.",
+      en: "Here is the Polar Bear by François Pompon, first presented at the Salon d'automne in 1922 in Paris. This white marble sculpture stands over a meter tall and depicts a polar bear in a dynamic posture, ready to advance. Pompon dedicated more than ten years to perfecting this work. Its smooth surface and clean forms anticipate modern animal art.",
+      es: "Este es el Oso Polar de François Pompon, presentado por primera vez en el Salón de Otoño de 1922 en París. Esta escultura de mármol blanco mide más de un metro de altura y representa un oso polar en una postura dinámica, listo para avanzar. Pompon dedicó más de diez años a perfeccionar esta obra. Su superficie lisa y sus formas depuradas anticipan el arte animalista moderno.",
+    },
+  },
+  {
+    id: "chouette",
+    name: {
+      fr: "Chouette de Dijon",
+      en: "Owl of Dijon",
+      es: "Búho de Dijon",
+    },
+    artist: {
+      fr: "Anonyme",
+      en: "Anonymous",
+      es: "Anónimo",
+    },
+    year: { fr: "1400", en: "1400", es: "1400" },
+    imageUrl:
+      "https://www.destinationdijon.com/wp-content/uploads/2019/04/rozenn-krebel-chouette-27.jpg",
+    color: "#E8E8E8",
+    descriptions: {
+      fr: "La Chouette de Dijon est une petite sculpture en pierre située sur un contrefort de l’église Notre-Dame de Dijon, rue de la Chouette. Elle est présentée par la Ville de Dijon comme sculptée au flanc de Notre-Dame depuis le XVe siècle et comme le porte-bonheur attitré des Dijonnais. Elle est devenue l’un des symboles populaires de la ville : la tradition veut que l’on la caresse de la main gauche, « la main du cœur », en faisant un vœu.",
+      en: "The Owl of Dijon is a small stone sculpture located on a buttress of Notre-Dame Church in Dijon, on Rue de la Chouette. The City of Dijon presents it as having been carved into the side of Notre-Dame since the 15th century and as the official good-luck charm of the people of Dijon. It has become one of the city’s popular symbols: tradition dictates that one should stroke it with the left hand, “the hand of the heart,” while making a wish. ",
+      es: "La Búho de Dijon es una pequeña escultura de piedra situada en un contrafuerte de la iglesia de Notre-Dame de Dijon, en la calle de la Chouette. El Ayuntamiento de Dijon la presenta como una escultura tallada en la fachada de Notre-Dame desde el siglo XV y como el amuleto oficial de los habitantes de Dijon. Se ha convertido en uno de los símbolos populares de la ciudad: la tradición dicta que hay que acariciarla con la mano izquierda, «la mano del corazón», mientras se pide un deseo.",
+    },
+    audioText: {
+      fr: "La Chouette de Dijon est une petite sculpture en pierre située sur un contrefort de l’église Notre-Dame de Dijon, rue de la Chouette. Elle est présentée par la Ville de Dijon comme sculptée au flanc de Notre-Dame depuis le XVe siècle et comme le porte-bonheur attitré des Dijonnais. Elle est devenue l’un des symboles populaires de la ville : la tradition veut que l’on la caresse de la main gauche, « la main du cœur », en faisant un vœu.",
+      en: "The Owl of Dijon is a small stone sculpture located on a buttress of Notre-Dame Church in Dijon, on Rue de la Chouette. The City of Dijon presents it as having been carved into the side of Notre-Dame since the 15th century and as the official good-luck charm of the people of Dijon. It has become one of the city’s popular symbols: tradition dictates that one should stroke it with the left hand, “the hand of the heart,” while making a wish. ",
+      es: "La Búho de Dijon es una pequeña escultura de piedra situada en un contrafuerte de la iglesia de Notre-Dame de Dijon, en la calle de la Chouette. El Ayuntamiento de Dijon la presenta como una escultura tallada en la fachada de Notre-Dame desde el siglo XV y como el amuleto oficial de los habitantes de Dijon. Se ha convertido en uno de los símbolos populares de la ciudad: la tradición dicta que hay que acariciarla con la mano izquierda, «la mano del corazón», mientras se pide un deseo.",
+    },
+  },
+  {
     id: "victoire",
     name: {
       fr: "Victoire de Samothrace",
@@ -78,29 +132,6 @@ export const artworks: Artwork[] = [
     },
   },
   {
-    id: "ours-blanc",
-    name: {
-      fr: "Ours blanc de Pompon",
-      en: "Polar Bear by Pompon",
-      es: "Oso Polar de Pompon",
-    },
-    artist: { fr: "François Pompon", en: "François Pompon", es: "François Pompon" },
-    year: { fr: "1922", en: "1922", es: "1922" },
-    imageUrl:
-      "https://cdn-s-www.bienpublic.com/images/ED5646F2-A697-4772-B46A-EBDE946E4660/NW_detail/apres-le-parc-darcy-et-le-musee-des-beaux-arts-l-ours-blanc-s-installera-aussi-sur-la-place-centrale-du-centre-commercial-toison-d-or-photo-lbp-stephane-rak-1682530441.jpg",
-    color: "#E8E8E8",
-    descriptions: {
-      fr: "L'Ours blanc est l'œuvre maîtresse de François Pompon, sculpteur animalier français. Présenté au Salon d'Automne de 1922, cette sculpture stylisée révolutionne la représentation animale en éliminant tout détail superflu pour ne garder que l'essentiel. Ses formes épurées et sa surface lisse font de lui un précurseur de l'art moderne et du design contemporain.",
-      en: "The Polar Bear is the masterpiece of François Pompon, a French animal sculptor. Presented at the Autumn Salon of 1922, this stylized sculpture revolutionized animal representation by eliminating all superfluous detail to keep only the essential. Its pure forms and smooth surface make it a precursor of modern art and contemporary design.",
-      es: "El Oso Polar es la obra maestra de François Pompon, escultor animalista francés. Presentada en el Salón de Otoño de 1922, esta escultura estilizada revolucionó la representación animal eliminando todo detalle superfluo.",
-    },
-    audioText: {
-      fr: "Voici l'Ours blanc de François Pompon, présenté pour la première fois au Salon d'automne de 1922 à Paris. Cette sculpture en marbre blanc mesure plus d'un mètre de hauteur et représente un ours polaire dans une posture dynamique, prêt à avancer. Pompon a consacré plus de dix ans à perfectionner cette œuvre. Sa surface lisse et ses formes épurées anticipent l'art animalier moderne.",
-      en: "Here is the Polar Bear by François Pompon, first presented at the Salon d'automne in 1922 in Paris. This white marble sculpture stands over a meter tall and depicts a polar bear in a dynamic posture, ready to advance. Pompon dedicated more than ten years to perfecting this work. Its smooth surface and clean forms anticipate modern animal art.",
-      es: "Este es el Oso Polar de François Pompon, presentado por primera vez en el Salón de Otoño de 1922 en París. Esta escultura de mármol blanco mide más de un metro de altura y representa un oso polar en una postura dinámica, listo para avanzar. Pompon dedicó más de diez años a perfeccionar esta obra. Su superficie lisa y sus formas depuradas anticipan el arte animalista moderno.",
-    },
-  },
-  {
     id: "louve",
     name: {
       fr: "Louve Capitoline",
@@ -130,7 +161,11 @@ export const artworks: Artwork[] = [
   {
     id: "nana",
     name: { fr: "Nana Jaune", en: "Yellow Nana", es: "Nana Amarilla" },
-    artist: { fr: "Niki de Saint Phalle", en: "Niki de Saint Phalle", es: "Niki de Saint Phalle" },
+    artist: {
+      fr: "Niki de Saint Phalle",
+      en: "Niki de Saint Phalle",
+      es: "Niki de Saint Phalle",
+    },
     year: { fr: "1999", en: "1999", es: "1999" },
     imageUrl:
       "https://lelephant-larevue.fr/wp-content/uploads/2020/06/Capture-d%E2%80%99e%CC%81cran-2020-06-17-a%CC%80-12.38.37.png",
