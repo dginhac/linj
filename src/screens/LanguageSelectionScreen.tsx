@@ -55,7 +55,7 @@ export default function LanguageSelectionScreen({ navigation, route }: Props) {
         {/* Artwork preview */}
         <View style={styles.artworkPreview}>
           <Image
-            source={{ uri: artwork.imageUrl }}
+            source={artwork.imageSource}
             style={styles.artworkThumb}
             resizeMode="cover"
           />

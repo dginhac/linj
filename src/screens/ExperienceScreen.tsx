@@ -135,7 +135,7 @@ export default function ExperienceScreen({ navigation, route }: Props) {
       {/* Hero image */}
       <View style={styles.heroContainer}>
         <Image
-          source={{ uri: artwork.imageUrl }}
+          source={artwork.imageSource}
           style={styles.heroImage}
           resizeMode="cover"
         />

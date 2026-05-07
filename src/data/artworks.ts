@@ -5,7 +5,7 @@ export interface Artwork {
   name: Record<Language, string>;
   artist: Record<Language, string>;
   year: Record<Language, string>;
-  imageUrl: string;
+  imageSource: number;
   descriptions: Record<Language, string>;
   audioText: Record<Language, string>;
   color: string;
@@ -25,8 +25,7 @@ export const artworks: Artwork[] = [
       es: "François Pompon",
     },
     year: { fr: "1922", en: "1922", es: "1922" },
-    imageUrl:
-      "https://cdn-s-www.bienpublic.com/images/ED5646F2-A697-4772-B46A-EBDE946E4660/NW_detail/apres-le-parc-darcy-et-le-musee-des-beaux-arts-l-ours-blanc-s-installera-aussi-sur-la-place-centrale-du-centre-commercial-toison-d-or-photo-lbp-stephane-rak-1682530441.jpg",
+    imageSource: require("../../assets/artworks/ours-blanc.jpg"),
     color: "#E8E8E8",
     descriptions: {
       fr: "L'Ours blanc est l'œuvre maîtresse de François Pompon, sculpteur animalier français. Présenté au Salon d'Automne de 1922, cette sculpture stylisée révolutionne la représentation animale en éliminant tout détail superflu pour ne garder que l'essentiel. Ses formes épurées et sa surface lisse font de lui un précurseur de l'art moderne et du design contemporain.",
@@ -52,17 +51,16 @@ export const artworks: Artwork[] = [
       es: "Anónimo",
     },
     year: { fr: "1400", en: "1400", es: "1400" },
-    imageUrl:
-      "https://www.destinationdijon.com/wp-content/uploads/2019/04/rozenn-krebel-chouette-27.jpg",
+    imageSource: require("../../assets/artworks/chouette.jpg"),
     color: "#E8E8E8",
     descriptions: {
-      fr: "La Chouette de Dijon est une petite sculpture en pierre située sur un contrefort de l’église Notre-Dame de Dijon, rue de la Chouette. Elle est présentée par la Ville de Dijon comme sculptée au flanc de Notre-Dame depuis le XVe siècle et comme le porte-bonheur attitré des Dijonnais. Elle est devenue l’un des symboles populaires de la ville : la tradition veut que l’on la caresse de la main gauche, « la main du cœur », en faisant un vœu.",
-      en: "The Owl of Dijon is a small stone sculpture located on a buttress of Notre-Dame Church in Dijon, on Rue de la Chouette. The City of Dijon presents it as having been carved into the side of Notre-Dame since the 15th century and as the official good-luck charm of the people of Dijon. It has become one of the city’s popular symbols: tradition dictates that one should stroke it with the left hand, “the hand of the heart,” while making a wish. ",
+      fr: "La Chouette de Dijon est une petite sculpture en pierre située sur un contrefort de l'église Notre-Dame de Dijon, rue de la Chouette. Elle est présentée par la Ville de Dijon comme sculptée au flanc de Notre-Dame depuis le XVe siècle et comme le porte-bonheur attitré des Dijonnais. Elle est devenue l'un des symboles populaires de la ville : la tradition veut que l'on la caresse de la main gauche, « la main du cœur », en faisant un vœu.",
+      en: "The Owl of Dijon is a small stone sculpture located on a buttress of Notre-Dame Church in Dijon, on Rue de la Chouette. The City of Dijon presents it as having been carved into the side of Notre-Dame since the 15th century and as the official good-luck charm of the people of Dijon. It has become one of the city's popular symbols: tradition dictates that one should stroke it with the left hand, \"the hand of the heart,\" while making a wish. ",
       es: "La Búho de Dijon es una pequeña escultura de piedra situada en un contrafuerte de la iglesia de Notre-Dame de Dijon, en la calle de la Chouette. El Ayuntamiento de Dijon la presenta como una escultura tallada en la fachada de Notre-Dame desde el siglo XV y como el amuleto oficial de los habitantes de Dijon. Se ha convertido en uno de los símbolos populares de la ciudad: la tradición dicta que hay que acariciarla con la mano izquierda, «la mano del corazón», mientras se pide un deseo.",
     },
     audioText: {
-      fr: "La Chouette de Dijon est une petite sculpture en pierre située sur un contrefort de l’église Notre-Dame de Dijon, rue de la Chouette. Elle est présentée par la Ville de Dijon comme sculptée au flanc de Notre-Dame depuis le XVe siècle et comme le porte-bonheur attitré des Dijonnais. Elle est devenue l’un des symboles populaires de la ville : la tradition veut que l’on la caresse de la main gauche, « la main du cœur », en faisant un vœu.",
-      en: "The Owl of Dijon is a small stone sculpture located on a buttress of Notre-Dame Church in Dijon, on Rue de la Chouette. The City of Dijon presents it as having been carved into the side of Notre-Dame since the 15th century and as the official good-luck charm of the people of Dijon. It has become one of the city’s popular symbols: tradition dictates that one should stroke it with the left hand, “the hand of the heart,” while making a wish. ",
+      fr: "La Chouette de Dijon est une petite sculpture en pierre située sur un contrefort de l'église Notre-Dame de Dijon, rue de la Chouette. Elle est présentée par la Ville de Dijon comme sculptée au flanc de Notre-Dame depuis le XVe siècle et comme le porte-bonheur attitré des Dijonnais. Elle est devenue l'un des symboles populaires de la ville : la tradition veut que l'on la caresse de la main gauche, « la main du cœur », en faisant un vœu.",
+      en: "The Owl of Dijon is a small stone sculpture located on a buttress of Notre-Dame Church in Dijon, on Rue de la Chouette. The City of Dijon presents it as having been carved into the side of Notre-Dame since the 15th century and as the official good-luck charm of the people of Dijon. It has become one of the city's popular symbols: tradition dictates that one should stroke it with the left hand, \"the hand of the heart,\" while making a wish. ",
       es: "La Búho de Dijon es una pequeña escultura de piedra situada en un contrafuerte de la iglesia de Notre-Dame de Dijon, en la calle de la Chouette. El Ayuntamiento de Dijon la presenta como una escultura tallada en la fachada de Notre-Dame desde el siglo XV y como el amuleto oficial de los habitantes de Dijon. Se ha convertido en uno de los símbolos populares de la ciudad: la tradición dicta que hay que acariciarla con la mano izquierda, «la mano del corazón», mientras se pide un deseo.",
     },
   },
@@ -75,8 +73,7 @@ export const artworks: Artwork[] = [
     },
     artist: { fr: "Anonyme", en: "Anonymous", es: "Anónimo" },
     year: { fr: "190 av. J.-C.", en: "190 BC", es: "190 a. C." },
-    imageUrl:
-      "https://medias.histoire-et-civilisations.com/api/v1/images/view/65f9a6895b635b19da0a18c9/width_1000/image.jpg",
+    imageSource: require("../../assets/artworks/victoire.jpg"),
     color: "#4A90D9",
     descriptions: {
       fr: "Chef-d'œuvre de la sculpture hellénistique, la Victoire de Samothrace représente Nike, déesse de la victoire. Sa draperie flottante et ses ailes déployées évoquent un mouvement saisissant. Découverte en 1863 dans l'île de Samothrace, elle est conservée au Louvre depuis 1884. Son dynamisme et sa puissance en font l'une des sculptures les plus admirées au monde.",
@@ -94,8 +91,7 @@ export const artworks: Artwork[] = [
     name: { fr: "Le Penseur", en: "The Thinker", es: "El Pensador" },
     artist: { fr: "Auguste Rodin", en: "Auguste Rodin", es: "Auguste Rodin" },
     year: { fr: "1904", en: "1904", es: "1904" },
-    imageUrl:
-      "https://www.musee-rodin.fr/sites/default/files/styles/diaporama_mav/public/2021-04/jm_5550.jpg?itok=Qpk0zoXf",
+    imageSource: require("../../assets/artworks/penseur.jpg"),
     color: "#8B4513",
     descriptions: {
       fr: "Créé par Auguste Rodin entre 1880 et 1882, Le Penseur est l'une des sculptures les plus reconnaissables au monde. Initialement conçu comme représentation du poète Dante contemplant son œuvre, il est devenu le symbole universel de la réflexion philosophique. Sa posture concentrée et sa musculature puissante incarnent la profondeur de la pensée humaine.",
@@ -117,8 +113,7 @@ export const artworks: Artwork[] = [
     },
     artist: { fr: "Jeff Koons", en: "Jeff Koons", es: "Jeff Koons" },
     year: { fr: "1994–2000", en: "1994–2000", es: "1994–2000" },
-    imageUrl:
-      "https://i2.wp.com/luxe.net/wp-content/uploads/2015/09/balloon-dog-blue.jpg",
+    imageSource: require("../../assets/artworks/balloon-dog.jpg"),
     color: "#0066CC",
     descriptions: {
       fr: "Balloon Dog (Blue) est l'une des œuvres les plus emblématiques de Jeff Koons, artiste américain du Pop Art contemporain. Réalisée en acier inoxydable poli miroir, cette sculpture monumentale représente un chien fait de ballons gonflables. Elle interroge la frontière entre l'art et la culture populaire, entre l'innocence enfantine et la sophistication artistique.",
@@ -144,8 +139,7 @@ export const artworks: Artwork[] = [
       en: "5th century BC",
       es: "Siglo V a. C.",
     },
-    imageUrl:
-      "https://www.euratlas.net/euratlas-info_protect/rome/capitole_louve.jpg",
+    imageSource: require("../../assets/artworks/louve.jpg"),
     color: "#8B6914",
     descriptions: {
       fr: "La Louve Capitoline est une sculpture en bronze représentant une louve allaitant Romulus et Rémus, les fondateurs légendaires de Rome. Long considérée comme une œuvre étrusque datant du Ve siècle avant J.-C., des analyses récentes suggèrent qu'elle daterait du Moyen Âge. Elle est le symbole de Rome et l'une des sculptures les plus photographiées au monde.",
@@ -167,8 +161,7 @@ export const artworks: Artwork[] = [
       es: "Niki de Saint Phalle",
     },
     year: { fr: "1999", en: "1999", es: "1999" },
-    imageUrl:
-      "https://lelephant-larevue.fr/wp-content/uploads/2020/06/Capture-d%E2%80%99e%CC%81cran-2020-06-17-a%CC%80-12.38.37.png",
+    imageSource: require("../../assets/artworks/nana.jpg"),
     color: "#FFD700",
     descriptions: {
       fr: "Les Nanas sont une série de sculptures monumentales créées par Niki de Saint Phalle à partir de 1965. Ces figures féminines aux formes généreuses et aux couleurs éclatantes célèbrent la joie, la liberté et la féminité. La Nana Jaune, avec ses teintes lumineuses et sa posture dynamique, incarne l'énergie vitale et le mouvement perpétuel de l'art de Niki de Saint Phalle.",

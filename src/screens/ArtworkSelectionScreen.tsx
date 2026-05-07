@@ -51,7 +51,7 @@ function ArtworkCard({
     >
       <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.85}>
         <Image
-          source={{ uri: artwork.imageUrl }}
+          source={artwork.imageSource}
           style={styles.cardImage}
           resizeMode="cover"
         />
